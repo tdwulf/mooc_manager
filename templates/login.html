@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div class="col-md-3"></div>
+<div class="col-md-6" style="text-align: center">
+    <h1>Welcome to the MOOC Manager</h1>
+    <p>
+        The MOOC Manager is a simple tool designed to help you manage your current active MOOCs. You can keep track of your progress,
+        add links to suplimental tools / resources you like, and even keeps quick notes to track those "Ah Ha!" moments.
+    </p>
+    <p>
+        Login or register to begin managing your MOOCs.
+    </p>
+
+</div>
+<div class="col-md-3">
+</div>
+
+<!-- Button trigger modal -->
+<div class="col-md-12">
+    <br />
+    <br />
+    <p>
+        <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#loginModal">
+            Login
+        </button>
+    </p>
+    <p>
+        <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#regModal">
+            Register
+        </button>
+    </p>
+</div>
+    <!-- Modal Base Code from getbootstrap.com -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="loginModalLabel">MOOC Manager Login</h4>
+      </div>
+
+          <div class="modal-body">
+
+            <form action="{{ url_for('login') }}" method="post">
+                <fieldset>
+                    <input name="action" value ="login" type="hidden"/>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" name="username" placeholder="Username" type="text" required="true" autofocus/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input class="form-control" name="password" placeholder="Password" type="password" required="true"/>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default" type="submit">Log In</button>
+                    </div>
+                </fieldset>
+            </form>
+
+          </div>
+        </div>
+    </div>
+</div>
+    <!-- Modal Base Code from getbootstrap.com -->
+<!-- Modal -->
+<div id="regModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Register</h4>
+      </div>
+      <div class="modal-body">
+            <form action="{{ url_for('login') }}" method="post">
+        <fieldset>
+            <input name="action" value ="register" type="hidden"/>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input autocomplete="off" class="form-control" name="username" placeholder="Username" type="text" required="true" autofocus/>
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input class="form-control" name="password" placeholder="Password" type="password" required="true" min="6"/>
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input class="form-control" name="password2" placeholder="Re-enter Password" type="password" required="true" min="6"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Register</button>
+            </div>
+        </fieldset>
+    </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

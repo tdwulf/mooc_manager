@@ -1,0 +1,197 @@
+.container
+{
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* colors for navbar */
+.navbar-default .navbar-brand
+{
+    color: #24c1b2;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #24c1b2;
+    font-weight: bold;
+}
+
+.navbar-default {
+    background: #021073;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    /* width: auto; */
+    width: 60%;
+
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+main td
+{
+    /* left-align tables' cells */
+    text-align: left;
+}
+
+.home {
+   /* padding-left: 50;  */
+    text-align: left;
+    width: 50%;
+}
+
+.heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20;
+    color: #021073;
+    padding-top: 20;
+    padding-bottom: 20;
+}
+
+.modal-header {
+    color: #021073;
+    text-align: center;
+}
+
+hr {
+    border-top: 1px solid gray;
+}
+
+#notes {
+    width: 100%;
+}
+
+.btn {
+    background-color:#021073;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.nav-pills>li>a {
+    color: #e1e2e7;
+}
+
+
+
+.top-pills a:hover{
+	color:#537fbe;
+    font-weight: bold;
+	transform: scale(1.1,1.1);
+    transition: .6s;
+}
+
+.delete {
+    text-align: center;
+    color: red;
+}
+
+.glyphicon-check {
+    color: green;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.glyphicon-remove {
+    color: red;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.glyphicon-pencil {
+    color: blue;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.glyphicon-edit {
+    color: green;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.glyphicon-lock {
+    color: gray;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.glyphicon-log-out {
+    color: red;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.sm {
+    font-size: 0.75em;
+}
+
+.modal-body {
+    text-align: left;
+    height:100%;
+    background: #efefef;
+
+}
+button.popup span {
+  z-index: 10;
+  display: none;
+  line-height: 16px;
+  border: none;
+}
+
+button.popup:hover span {
+  display: inline;
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  color: #000;
+  font-weight: bold;
+
+}
+
+a.popup_low span, button.popup_low span {
+  z-index: 10;
+  display: none;
+  line-height: 16px;
+  border: none;
+}
+
+a.popup_low:hover span, button.popup_low:hover span {
+  display: inline;
+  position: absolute;
+  top: 30px;
+  left: -10px;
+  color: #000;
+  font-weight: bold;
+
+}
+
+button:focus {
+    outline: none;
+}
+
+.pname {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 10px;
+}
+body {
+    background: #f1f2f7;
+}

@@ -1,0 +1,255 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Course Home
+{% endblock %}
+
+{% block main %}
+
+
+<p class="heading">Active Courses</p>
+<hr></hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Offered By</th>
+                <th>Progress</th>
+                <th>Grade</th>
+                <th>Start Date</th>
+                <th class="sm"> </th>
+                <th class="sm"> </th>
+                <th class="sm"> </th>
+
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="7"><strong>Active Courses: {{totalcourses}}</strong></td>
+            </tr>
+        </tfoot>
+        <tbody>
+                {%for course in courses%}
+                <tr>
+                    <td><a href="#" data-toggle="modal" data-target="#{{course.id}}detailModal">{{course.name}}</a></td>
+                    <td>{{course.school}}</td>
+                    <td>{{course.progress}}</td>
+                    <td>{{course.grade}}</td>
+                    <td>{{course.startDate}}</td>
+                    <td>
+                        <button type="button" class="glyphicon glyphicon-pencil popup" data-toggle="modal" data-target="#{{course.id}}updateModal">
+                            <span>Edit</span>
+                        </button>
+                            <!-- Modal Base Code from getbootstrap.com -->
+                        <div class="modal fade" id="{{course.id}}updateModal" tabindex="-1" role="dialog" aria-labelledby="{{course.id}}updateModalLabel">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="{{course.id}}updateModalLabel">Update Course</h4>
+                                    </div>
+                                <div class="modal-body">
+                                    <form action="{{ url_for('my_courses') }}" method="post">
+                                        <fieldset>
+                                            <br>
+                                            <div class="col-md-6" align="right">
+                                                <input name="action" value ="edit" type="hidden"/>
+                                                    <div class="form-group">
+                                                        Course: <input autocomplete="off" class="form-control" name="name" value="{{course.name}}" type="text" readonly/>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        Site: <input autocomplete="off" autofocus class="form-control" name="site" value="{{course.site}}" type="text"/ autofocus>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        Progress: <input autocomplete="off" class="form-control" name="progress" value="{{course.progress}}" type="text"/>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        Grade: <input autocomplete="off" class="form-control" name="grade" value="{{course.grade}}" type="text"/>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        School/Trainer: <input autocomplete="off" class="form-control" name="school" value="{{course.school}}" type="text"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <textarea id="notes" autocomplete="off" class="form-control" name="notes" rows="14">{{course.notes}}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        Resource: <input autocomplete="off" class="form-control" name="link1" value="{{course.link1}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Resource: <input autocomplete="off" class="form-control" name="link2" value="{{course.link2}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Resource: <input autocomplete="off" class="form-control" name="link3" value="{{course.link3}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Resource: <input autocomplete="off" class="form-control" name="link4" value="{{course.link4}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Resource: <input autocomplete="off" class="form-control" name="link5" value="{{course.link5}}" type="text"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" align="left">
+                                                    <div class="form-group">
+                                                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link1" value="{{course.desc_link1}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link2" value="{{course.desc_link2}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link3" value="{{course.desc_link3}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link4" value="{{course.desc_link4}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link5" value="{{course.desc_link5}}"type="text"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    Start Date: <input autocomplete="off" class="form-control" name="startDate" value="{{course.startDate}}"type="text"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-default" type="submit">Update Course</button>
+                                                    </div>
+                                                </div>
+                                        </fieldset>
+                                    </form>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td>
+                        <p>
+                                <button type="button" class="glyphicon glyphicon-check popup" data-toggle="modal" data-target="#{{course.id}}completeModal">
+                                <span>Complete</span>
+                                </button>
+                            </p>
+                        </div>
+                            <!-- Modal Base Code from getbootstrap.com -->
+                        <div class="modal fade" id="{{course.id}}completeModal" tabindex="-1" role="dialog" aria-labelledby="{{course.id}}completeModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="{{course.id}}completeModalLabel">Complete Course</h4>
+                              </div>
+
+                                  <div class="modal-body">
+
+                                    <form action="{{ url_for('my_courses') }}" method="post">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <p> Confirm Course Completion?</p>
+                                                <input name="action" value ="complete" type="hidden"/>
+                                                <input autocomplete="off" class="form-control" name="name" value="{{course.name}}" type="text" readonly/>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-default" type="submit">Confirm Completion</button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                         <p>
+                                <button type="button" class="glyphicon glyphicon-remove popup" data-toggle="modal" data-target="#{{course.id}}removeModal">
+                                    <span>Delete</span>
+                                </button>
+                            </p>
+                        </div>
+                            <!-- Modal Base Code from getbootstrap.com -->
+                        <div class="modal fade" id="{{course.id}}removeModal" tabindex="-1" role="dialog" aria-labelledby="{{course.id}}removeModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="{{course.id}}removeModalLabel">Remove Course</h4>
+                                  </div>
+
+                                      <div class="modal-body">
+
+                                        <form action="{{ url_for('my_courses') }}" method="post">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <p> Are you sure you would like to remove the course named below, this cannot be undone?</p>
+                                                    <input name="action" value ="delete" type="hidden"/>
+                                                    <input autocomplete="off" class="form-control" name="name" value="{{course.name}}" type="text" readonly/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn btn-default" type="submit">Confirm Removal</button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </td>
+
+                </tr>
+                    <div class="modal fade" id="{{course.id}}detailModal" tabindex="-1" role="dialog" aria-labelledby="{{course.id}}detailModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="{{course.id}}detailModalLabel">Course Details</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <span style="font-size: 2em">{{course.name}} </span> (<a href="{{course.site}}" target="_blank"> {{course.school}} </a>)
+                                    <hr style="width: 100%">
+                                    <p>
+                                        <span class="col-md-6"><strong>Progress:</strong> {{course.progress}}</span>
+	                                    <span class="col-md-6" style="align: right"><strong>Grade:</strong> {{course.grade}}</span>
+                                    </p>
+                                    <p>
+                                        <span class="col-md-6"><strong>Started:</strong> {{course.startDate}}</span>
+	                                    <span class="col-md-6" style="align: right; margin-bottom: 1.5em"><strong>Completed:</strong> {{course.completeDate}}</span>
+	                                </p>
+                                       <hr style="width: 100%">
+                                    <p>
+                                        <span class="col-md-6"><strong>Resource Link</strong></span>
+                                        <span class="col-md-6" style="align: right"><strong>Description</strong></span>
+                                        <span class="col-md-6"><a href="{{course.link1}}" target="_blank">{{course.link1}}</a></span>
+                                        <span class="col-md-6" style="align: right">{{course.desc_link1}}</span>
+                                        <span class="col-md-6"><a href="{{course.link2}}" target="_blank">{{course.link2}}</a></span>
+                                        <span class="col-md-6" style="align: right">{{course.desc_link2}}</span>
+                                        <span class="col-md-6"><a href="{{course.link3}}" target="_blank">{{course.link3}}</a></span>
+                                        <span class="col-md-6" style="align: right">{{course.desc_link3}}</span>
+                                        <span class="col-md-6"><a href="{{course.link4}}" target="_blank">{{course.link4}}</a></span>
+                                        <span class="col-md-6" style="align: right">{{course.desc_link4}}</span>
+                                        <span class="col-md-6"><a href="{{course.link5}}" target="_blank">{{course.link5}}</a></span>
+                                        <span class="col-md-6" style="align: right; margin-bottom: 1.5em">{{course.desc_link5}}</span>
+                                    </p>
+                                        <hr style="width: 100%">
+                                        <strong>Notes:</strong>
+                                        <br>
+                                        {{course.notes}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {%endfor%}
+
+        </tbody>
+    </table>
+
+{% endblock %}

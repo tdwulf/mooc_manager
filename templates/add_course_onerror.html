@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Add Course
+{% endblock %}
+
+{% block main %}
+<span class="heading">Add Course</span>
+    <form action="{{ url_for('add_course') }}" method="post">
+        <fieldset>
+            <br>
+            <div class="col-md-6" align="right">
+                    <div class="form-group">
+                        Course: <input required="true" autocomplete="off" autofocus class="form-control" name="name" value="{{course.name}}" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        Site: <input autocomplete="off" class="form-control" name="site" value="{{course.site}}" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        Progress: <input autocomplete="off" class="form-control" name="progress" value="{{course.progress}}" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        Grade: <input autocomplete="off" class="form-control" name="grade" value="{{course.grade}}" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        School/Trainer: <input autocomplete="off" class="form-control" name="school" value="{{course.school}}" type="text"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea id="notes" autocomplete="off" class="form-control" name="notes" rows="11">{{course.notes}}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link1" value="{{course.link1}}" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link2" value="{{course.link2}}" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link3" value="{{course.link3}}" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link4" value="{{course.link4}}" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link5" value="{{course.link5}}" type="text"/>
+                    </div>
+                </div>
+                <div class="col-md-6" align="left">
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link1" value="{{course.desc_link1}}" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link2" value="{{course.desc_link2}}" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link3" value="{{course.desc_link3}}" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link4" value="{{course.desc_link4}}" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link5" value="{{course.desc_link5}}" type="text"/>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button class="btn btn-default" type="submit">Add Course</button>
+                    </div>
+                </div>
+        </fieldset>
+    </form>
+{% endblock %}

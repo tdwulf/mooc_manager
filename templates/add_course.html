@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Add Course
+{% endblock %}
+
+{% block main %}
+<span class="heading">Add Course</span>
+    <form action="{{ url_for('add_course') }}" method="post">
+        <fieldset>
+            <br>
+            <div class="col-md-6" align="right">
+                    <div class="form-group">
+                        Course: <input required="true" autocomplete="off" autofocus class="form-control" name="name" placeholder="Course Name" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        Site: <input autocomplete="off" class="form-control" name="site" placeholder="http://linktocourse.com" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        Progress: <input autocomplete="off" class="form-control" name="progress" placeholder="Progress" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        Grade: <input autocomplete="off" class="form-control" name="grade" placeholder="Current Grade" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        School/Trainer: <input autocomplete="off" class="form-control" name="school" placeholder="Offered By" type="text"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea id="notes" autocomplete="off" class="form-control" name="notes" placeholder="Course Notes" rows="11"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link1" placeholder="http://ResourceLink1.com" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link2" placeholder="http://ResourceLink2.com" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link3" placeholder="http://ResourceLink3.com" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link4" placeholder="http://ResourceLink4.com" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource: <input autocomplete="off" class="form-control" name="link5" placeholder="http://ResourceLink5.com" type="text"/>
+                    </div>
+                </div>
+                <div class="col-md-6" align="left">
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link1" placeholder="Link 1 Description" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link2" placeholder="Link 2 Description" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link3" placeholder="Link 3 Description" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link4" placeholder="Link 4 Description" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        Resource Description: <input autocomplete="off" class="form-control" name="desc_link5" placeholder="Link 5 Description" type="text"/>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button class="btn btn-default" type="submit">Add Course</button>
+                    </div>
+                </div>
+        </fieldset>
+    </form>
+{% endblock %}

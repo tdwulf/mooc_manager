@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Course Home
+{% endblock %}
+
+{% block main %}
+
+
+<p class="heading">Learning Journal</p>
+<hr>
+<button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#jnewModal">
+    <span>New Entry</span>
+</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="col-md-1">Date</th>
+                <th class="col-md-1">Hours</th>
+                <th class="col-md-3">Course</th>
+                <th class="col-md-7">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+                {%for entry in journal%}
+                <tr>
+                    <td class="col-md-1">{{entry.date}}</td>
+                    <td class="col-md-1">{{entry.hours}}</td>
+                    <td class="col-md-3"><a href="{{ url_for('my_courses') }}">{{entry.course}}</a></td>
+                    <td class="col-md-7">{{entry.notes}}</td>
+                    <td>
+                        <button type="button" class="glyphicon glyphicon-pencil popup" data-toggle="modal" data-target="#{{entry.id}}jupdateModal">
+                            <span>Edit</span>
+                        </button>
+
+                            <!-- Modal Base Code from getbootstrap.com -->
+                        <div class="modal fade" id="{{entry.id}}jupdateModal" tabindex="-1" role="dialog" aria-labelledby="{{entry.id}}jupdateModalLabel">
+                            <div class="modal-dialog modal-md" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="{{entry.id}}jupdateModalLabel">Update Journal Entry</h4>
+                                    </div>
+                                <div class="modal-body">
+                                    <form action="{{ url_for('journal') }}" method="post">
+                                        <fieldset>
+                                            <br>
+                                            <div class="col-md-12" align="left">
+                                                <input name="action" value ="edit" type="hidden"/>
+                                                <input name="id" value="{{entry.id}}" type="hidden"/>
+                                                    <div class="form-group">
+                                                        Date: <br><input autocomplete="off" class="form-control" name="date" value="{{entry.date}}" type="text" autofocus/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Hours Spent: <br><input autocomplete="off" class="form-control" name="hours" value="{{entry.hours}}" type="text"/>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        Course: <br><input autocomplete="off" autofocus class="form-control" name="course" value="{{entry.course}}" type="text"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        Notes: <br><textarea id="notes" autocomplete="off" class="form-control" name="notes" rows="10">{{entry.notes}}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-default" type="submit">Update Journal</button>
+                                                    </div>
+                                                </div>
+                                        </fieldset>
+                                    </form>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                         <p>
+                                <button type="button" class="glyphicon glyphicon-remove popup" data-toggle="modal" data-target="#{{entry.id}}jremoveModal">
+                                    <span>Delete</span>
+                                </button>
+                            </p>
+                        </div>
+                            <!-- Modal Base Code from getbootstrap.com -->
+                        <div class="modal fade" id="{{entry.id}}jremoveModal" tabindex="-1" role="dialog" aria-labelledby="{{entry.id}}jremoveModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="{{entry.id}}jremoveModalLabel">Remove Journal Entry</h4>
+                                  </div>
+
+                                      <div class="modal-body">
+
+                                        <form action="{{ url_for('journal') }}" method="post">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <p> Are you sure you would like to remove this journal entry?</p>
+                                                    <input name="action" value ="delete" type="hidden"/>
+                                                    <input name="id" value ="{{entry.id}}" type="hidden"/>
+                                                    <input autocomplete="off" class="form-control" name="date" value="{{entry.date}}" type="text" readonly/>
+                                                    <input autocomplete="off" class="form-control" name="course" value="{{entry.course}}" type="text" readonly/>
+                                                    <textarea id="notes" autocomplete="off" class="form-control" name="notes" rows="10" readonly/>{{entry.notes}}</textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn btn-default" type="submit">Confirm Removal</button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </td>
+                </tr>
+                {%endfor%}
+
+        </tbody>
+    </table>
+    <div class="modal fade" id="jnewModal" tabindex="-1" role="dialog" aria-labelledby="jnewModalLabel">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="jnewModalLabel">Add Journal Entry</h4>
+                </div>
+            <div class="modal-body">
+                <form action="{{ url_for('journal') }}" method="post">
+                    <fieldset>
+                        <br>
+                        <div class="col-md-12" align="left">
+                            <input name="action" value ="new" type="hidden"/>
+                                <div class="form-group">
+                                    Course:<br><input autocomplete="off" autofocus class="form-control" name="course" placeholder="Course Name " type="text"/>
+                                </div>
+                                <div class="form-group">
+                                    Hours Spent: <br><input autocomplete="off" class="form-control" name="hours" placeholder="whole number or decimal" type="text"/>
+                                </div>
+                                <div class="form-group">
+                                    Notes:<br> <textarea id="notes" autocomplete="off" class="form-control" name="notes" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button class="btn btn-default" type="submit">Add Entry</button>
+                                </div>
+                            </div>
+                    </fieldset>
+                </form>
+
+              </div>
+            </div>
+        </div>
+    </div>
+</td>
+{% endblock %}
